@@ -1,42 +1,122 @@
 package frontend;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
 
-public class Page extends JFrame {
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JMenuItem;
+import java.awt.CardLayout;
 
+public class Page extends JFrame
+{
+
+//Fields	
+	
 	private JPanel contentPane;
+	
+	private static Toolkit tk = Toolkit.getDefaultToolkit();
+	
+	private static Dimension dm = tk.getScreenSize();
+	
+	private static double screenwidth = dm.getWidth();
+	private static double screenheight = dm.getHeight();
 
+//Main
+	
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
+	public static void main(String[] args)
+	{
+		EventQueue.invokeLater(new Runnable()
+		{
+			public void run()
+			{
+				try
+				{
 					Page frame = new Page();
 					frame.setVisible(true);
-				} catch (Exception e) {
+				}
+				catch (Exception e)
+				{
 					e.printStackTrace();
 				}
 			}
 		});
 	}
+	
+//Constructor	
 
 	/**
 	 * Create the frame.
 	 */
-	public Page() {
+	public Page()
+	{
+		setTitle("Silent Auction");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenuItem mntmHome = new JMenuItem("Home");
+
+		menuBar.add(mntmHome);
+		
+		JMenuItem mntmDonate = new JMenuItem("Donate");
+		menuBar.add(mntmDonate);
+		
+		JMenuItem mntmStatistics = new JMenuItem("Statistics");
+		menuBar.add(mntmStatistics);
+		
+		JMenuItem mntmHelp = new JMenuItem("Help");
+		menuBar.add(mntmHelp);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(new CardLayout(0, 0));
+		
+
+		JPanel homePanel = new JPanel();
+		homePanel.setBackground(Color.BLUE);
+		contentPane.add(homePanel);
+		
+		JPanel donatePanel = new JPanel();
+		donatePanel.setBackground(Color.GREEN);
+		contentPane.add(donatePanel);
+		
+		
+		
+		pack();
+		setLocation((int)(screenwidth - getWidth()) / 2, (int)(screenheight - getHeight()) / 2);
+		
+		mntmHome.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				donatePanel.setVisible(false);
+				
+				homePanel.setVisible(true);
+			}
+		});
+		
+
+		mntmDonate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				homePanel.setVisible(false);
+				
+				donatePanel.setVisible(true);
+			}
+		});
 	}
+	
+//Methods
 
 }
