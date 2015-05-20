@@ -26,8 +26,6 @@ public class Registration extends JPanel {
 	 */
 	public Registration() {
 
-		
-		setBackground(Color.RED);
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel innerRegPanel = new JPanel();
