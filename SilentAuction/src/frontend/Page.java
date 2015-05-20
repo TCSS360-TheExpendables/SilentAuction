@@ -110,11 +110,13 @@ public class Page extends JFrame
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
 		
-
+		//home panel
 		JPanel homePanel = new JPanel();
 		homePanel.setBackground(Color.BLUE);
 		contentPane.add(homePanel);
 		
+		
+		//registration panel
 		JPanel registrationPanel = new JPanel();
 		registrationPanel.setBackground(Color.RED);
 		contentPane.add(registrationPanel);
@@ -201,37 +203,42 @@ public class Page extends JFrame
 		gbc_label_2.gridy = 5;
 		innerRegPanel.add(label_2, gbc_label_2);
 				
-				JButton btnRegister = new JButton("Register");
-				
-						GridBagConstraints gbc_btnRegister = new GridBagConstraints();
-						gbc_btnRegister.insets = new Insets(0, 0, 5, 0);
-						gbc_btnRegister.anchor = GridBagConstraints.EAST;
-						gbc_btnRegister.gridx = 5;
-						gbc_btnRegister.gridy = 6;
-						innerRegPanel.add(btnRegister, gbc_btnRegister);
-				
-				btnRegister.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						//TODO: Create a new user with ID
-					}
-				});
-		
+		JButton btnRegister = new JButton("Register");
+
+		GridBagConstraints gbc_btnRegister = new GridBagConstraints();
+		gbc_btnRegister.insets = new Insets(0, 0, 5, 0);
+		gbc_btnRegister.anchor = GridBagConstraints.EAST;
+		gbc_btnRegister.gridx = 5;
+		gbc_btnRegister.gridy = 6;
+		innerRegPanel.add(btnRegister, gbc_btnRegister);
+
+		btnRegister.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TODO: Create a new user with ID
+			}
+		});
+
+		//donate panel
 		JPanel donatePanel = new JPanel();
 		donatePanel.setBackground(Color.GREEN);
 		contentPane.add(donatePanel);
 		
+		//general stats panel
 		JPanel generalStatsPanel = new JPanel();
 		generalStatsPanel.setBackground(Color.ORANGE);
 		contentPane.add(generalStatsPanel);
 		
+		//QR panel
 		JPanel QRPanel = new JPanel();
 		QRPanel.setBackground(Color.GRAY);
 		contentPane.add(QRPanel);
 		
+		//specific stats panel
 		JPanel specificStatsPanel = new JPanel();
 		specificStatsPanel.setBackground(Color.MAGENTA);
 		contentPane.add(specificStatsPanel);
 		
+		//item panel
 		JPanel itemPanel = new JPanel();
 		itemPanel.setBackground(Color.PINK);
 		contentPane.add(itemPanel);
