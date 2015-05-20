@@ -8,6 +8,7 @@ import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
@@ -19,12 +20,15 @@ import java.awt.event.ActionEvent;
 import javax.swing.JMenuItem;
 
 import java.awt.CardLayout;
+
 import javax.swing.JButton;
+
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.FlowLayout;
+
 import javax.swing.BoxLayout;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -290,9 +294,31 @@ public class Page extends JFrame
 			}
 		});
 		
-		mntmHelp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//CONNER PUT THE DIALOG BOX HERE
+		mntmHelp.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				JOptionPane.showMessageDialog(contentPane, "    Welcome to our Silent Auction "
+						+ "software, by The Expendables Software LLC\nHere, you can register "
+						+ "and start bidding on items in our silent auction. In this system, "
+						+ "you can\nfind items you are interested in and you will see an amount"
+						+ " of information about an item, most\nimportantly, the current "
+						+ "highest bid. If you decide that you would wish to go for it and bid,"
+						+ " you\nmust bid any amount higher than this bid. At the end of the "
+						+ "event when the auction closes, the\nwinners will be assembled "
+						+ "together and notified. Thank you for participating. -Conner Martin, "
+						+ "CEO\n\nIf you would like to bid on an item, click the ‘Home’ "
+						+ "button.\n    Remember to register first! (Found by clicking the "
+						+ "‘register’ button.)\nIf you would like to donate an item, click the"
+						+ " ‘Donate’ button.\nIf you would like to see statistics on this "
+						+ "event, click the ‘Statistics’ button.\n    Here, you can find "
+						+ "general stats for all items, or select an item and get its specific"
+						+ " stats.\nRemember, all of these buttons are available at all times!"
+						+ "\n\n   Who we are:\nWe are The Expendables Software LLC. We consist "
+						+ "of Christopher Otterson, Conner Martin,\nHannah Silva and Robert "
+						+ "Gillis. And we are the MOTHA FUCKIN BEST.\n    Contact us:\nWebsite"
+						+ " – https://sites.google.com/site/theexpendablessoftware/\nEmail – "
+						+ "theexpendables@u.washington.edu", "Help", JOptionPane.PLAIN_MESSAGE);
 			}
 		});
 	}
