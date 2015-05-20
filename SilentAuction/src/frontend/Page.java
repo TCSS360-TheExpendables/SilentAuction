@@ -76,6 +76,7 @@ public class Page extends JFrame
 		menuBar.add(mntmDonate);
 		
 		JMenuItem mntmStatistics = new JMenuItem("Statistics");
+
 		menuBar.add(mntmStatistics);
 		
 		JMenuItem mntmHelp = new JMenuItem("Help");
@@ -94,6 +95,10 @@ public class Page extends JFrame
 		donatePanel.setBackground(Color.GREEN);
 		contentPane.add(donatePanel);
 		
+		JPanel generalStatsPanel = new JPanel();
+		generalStatsPanel.setBackground(Color.ORANGE);
+		contentPane.add(generalStatsPanel);
+		
 		
 		
 		pack();
@@ -102,6 +107,7 @@ public class Page extends JFrame
 		mntmHome.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				donatePanel.setVisible(false);
+				generalStatsPanel.setVisible(false);
 				
 				homePanel.setVisible(true);
 			}
@@ -111,8 +117,18 @@ public class Page extends JFrame
 		mntmDonate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				homePanel.setVisible(false);
+				generalStatsPanel.setVisible(false);
 				
 				donatePanel.setVisible(true);
+			}
+		});
+		
+		mntmStatistics.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				homePanel.setVisible(false);
+				donatePanel.setVisible(false);
+				
+				generalStatsPanel.setVisible(true);
 			}
 		});
 	}
