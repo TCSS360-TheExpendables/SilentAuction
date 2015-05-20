@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -14,7 +15,9 @@ import javax.swing.JMenu;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JMenuItem;
+
 import java.awt.CardLayout;
 
 public class Page extends JFrame
@@ -63,6 +66,10 @@ public class Page extends JFrame
 	public Page()
 	{
 		setTitle("Silent Auction");
+		
+		ImageIcon img = new ImageIcon("assets/logo.png");
+		setIconImage(img.getImage());
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
