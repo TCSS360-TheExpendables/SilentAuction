@@ -80,6 +80,7 @@ public class Page extends JFrame
 		menuBar.add(mntmStatistics);
 		
 		JMenuItem mntmHelp = new JMenuItem("Help");
+
 		menuBar.add(mntmHelp);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -99,6 +100,21 @@ public class Page extends JFrame
 		generalStatsPanel.setBackground(Color.ORANGE);
 		contentPane.add(generalStatsPanel);
 		
+		JPanel QRPanel = new JPanel();
+		QRPanel.setBackground(Color.GRAY);
+		contentPane.add(QRPanel);
+		
+		JPanel specificStatsPanel = new JPanel();
+		specificStatsPanel.setBackground(Color.MAGENTA);
+		contentPane.add(specificStatsPanel);
+		
+		JPanel itemPanel = new JPanel();
+		itemPanel.setBackground(Color.PINK);
+		contentPane.add(itemPanel);
+		
+		JPanel registrationPanel = new JPanel();
+		registrationPanel.setBackground(Color.RED);
+		contentPane.add(registrationPanel);
 		
 		
 		pack();
@@ -129,6 +145,12 @@ public class Page extends JFrame
 				donatePanel.setVisible(false);
 				
 				generalStatsPanel.setVisible(true);
+			}
+		});
+		
+		mntmHelp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//CONNER PUT THE DIALOG BOX HERE
 			}
 		});
 	}
