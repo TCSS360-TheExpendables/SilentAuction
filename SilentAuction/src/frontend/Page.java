@@ -1,6 +1,6 @@
 package frontend;
 
-import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -10,7 +10,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 
 import java.awt.event.ActionListener;
@@ -18,28 +17,28 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JMenuItem;
 
-import java.awt.CardLayout;
-
-import javax.swing.JButton;
-
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-
+/**
+ * This class is the main frame for our silent auction software for TCSS 360.
+ * 
+ * @author The Expendables
+ * @version 0.0.0.1
+ * @since 20.05.2015
+ */
 public class Page extends JFrame
 {
 
 //Fields	
 	
+	//Holds the different panes that we use as windows.
 	private JPanel contentPane;
 	
+	//Toolkit to center the application.
 	private static Toolkit tk = Toolkit.getDefaultToolkit();
 	
+	//The size of the screen for centering.
 	private static Dimension dm = tk.getScreenSize();
 	
+	//Width and Height of the screen to keep it centered.
 	private static double screenwidth = dm.getWidth();
 	private static double screenheight = dm.getHeight();
 
@@ -47,6 +46,8 @@ public class Page extends JFrame
 	
 	/**
 	 * Launch the application.
+	 * 
+	 * @param args is the command line required array of arguments in order to run.
 	 */
 	public static void main(String[] args)
 	{
@@ -70,43 +71,45 @@ public class Page extends JFrame
 //Constructor	
 
 	/**
-	 * Create the frame.
+	 * Create the frame. This creates the entire JFrame in addition to the menu and all of the
+	 * individual pages and puts them all together so a user can switch between different pages.
 	 */
 	public Page()
 	{
-		setTitle("Silent Auction");
-		setBounds(100, 100, 700, 500);
+		basicSetup();
 		
-		ImageIcon img = new ImageIcon("assets/logo.png");
-		setIconImage(img.getImage());
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+	/** Start menu */
+		//the menu bar
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
+		//home button
 		JMenuItem mntmHome = new JMenuItem("Home");
-
 		menuBar.add(mntmHome);
 		
+		//register button
 		JMenuItem mntmRegister = new JMenuItem("Register");
-
 		menuBar.add(mntmRegister);
 		
+		//donate button
 		JMenuItem mntmDonate = new JMenuItem("Donate");
 		menuBar.add(mntmDonate);
 		
+		//stats button
 		JMenuItem mntmStatistics = new JMenuItem("Statistics");
-
 		menuBar.add(mntmStatistics);
 		
+		//help button
 		JMenuItem mntmHelp = new JMenuItem("Help");
 		menuBar.add(mntmHelp);
+	/** End menu */
+		
+		//the content pane the pages rest in.
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
 		
+	/** Start 'pages' */
 		//home panel
 		JPanel homePanel = new JPanel();
 		homePanel.setBackground(Color.BLUE);
@@ -116,11 +119,9 @@ public class Page extends JFrame
 		JPanel registrationPanel = new Registration();
 		contentPane.add(registrationPanel);
 		
-
 		//donate panel
 		JPanel donatePanel = new Donor();
 		contentPane.add(donatePanel);
-		
 		
 		//general stats panel
 		JPanel generalStatsPanel = new JPanel();
@@ -141,10 +142,10 @@ public class Page extends JFrame
 		JPanel itemPanel = new JPanel();
 		itemPanel.setBackground(Color.PINK);
 		contentPane.add(itemPanel);
+	/** End 'pages' */
 		
-		//pack();
-		setLocation((int)(screenwidth - getWidth()) / 2, (int)(screenheight - getHeight()) / 2);
-		
+	/** Start listeners */
+		//the home listener
 		mntmHome.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -160,6 +161,7 @@ public class Page extends JFrame
 			}
 		});
 		
+		//the register listener
 		mntmRegister.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -176,6 +178,7 @@ public class Page extends JFrame
 			}
 		});
 
+		//the donate listener
 		mntmDonate.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -191,6 +194,7 @@ public class Page extends JFrame
 			}
 		});
 		
+		//the stats listener
 		mntmStatistics.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -206,6 +210,7 @@ public class Page extends JFrame
 			}
 		});
 		
+		//the help listener
 		mntmHelp.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -233,5 +238,23 @@ public class Page extends JFrame
 						+ "theexpendables@u.washington.edu", "Help", JOptionPane.PLAIN_MESSAGE);
 			}
 		});
+	/** End listeners */
 	}
+	
+//Methods	
+	
+	/**
+	 * Builds the general basic things that a JFrame needs.
+	 * Including the title, size, location, exit operation, and the custom icon.
+	 */
+	private void basicSetup()
+	{
+		setTitle("Silent Auction");
+		setBounds(100, 100, 700, 500);
+		setLocation((int)(screenwidth - getWidth()) / 2, (int)(screenheight - getHeight()) / 2);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ImageIcon img = new ImageIcon("assets/logo.png");
+		setIconImage(img.getImage());
+	}
+	
 }
