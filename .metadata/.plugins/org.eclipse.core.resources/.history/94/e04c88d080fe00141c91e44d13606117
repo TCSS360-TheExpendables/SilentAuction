@@ -1,0 +1,28 @@
+package backend;
+
+import java.util.EventListener;
+import java.util.Map;
+
+public class Auction
+{
+  private Stats stats;
+  private Map<Long, Item> items;
+  private Map<Long, User> users;
+  
+  
+  
+  private class Stats
+  {
+    private int totalBids;
+    private int averageBids;
+    private Stats generalStats()
+    {
+      return stats;
+      
+    }
+    public Stats()
+    {
+      
+    }
+  }
+}

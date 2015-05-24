@@ -1,0 +1,94 @@
+package backend;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Item
+{
+  private final LinkedList<Bid> bids;
+  private String name;
+  private String description;
+  private User donor;
+  private double appraisal;
+  public final int id;
+  private static int counter = 0;
+  public enum MatchType
+  {
+    BID_COUNT,
+    NAME,
+    DESCRIPTION,
+    DONOR,
+    APPRAISAL
+  }
+  public Item()
+  {
+    this("[un-named item #" + counter++ + "]", "blabla", 1.0, null);
+  }
+  public Item(String name, String description, double appraisal, User donor)
+  {
+    this.bids = new LinkedList<Bid>();
+    this.name = name;
+    this.donor = donor;
+    this.appraisal = appraisal;
+    this.id = name.hashCode();
+    this.description = description;
+  }
+  public Bid addBid(User user, double amount)
+  {
+    return this.addBid(new Bid(amount, user.name.hashCode()));
+  }
+
+  public Bid addBid(Bid bid)
+  {
+    this.bids.add(bid);
+    return bid;
+  }
+  
+  public Bid getHighestBidAmt()
+  {
+    return bids.getLast();
+  }
+  /*
+  public String[] match(String regex)
+  {
+    Pattern p = Pattern.compile(regex);
+    return p.matcher(this.name).;
+    
+  }*/
+  public int getHighestBidder()
+  {
+    return this.bids.getLast().hashCode();
+  }
+  public class Stats extends Statistics
+  {
+    public List<Long>[] getHistogram(int samples, long start, long stop)
+    {
+      ArrayList<LinkedList<Long>> histogram = new ArrayList<LinkedList<Long>>(samples);
+      Iterator<Bid> itr = bids.iterator();
+
+      LinkedList<Long> list = new LinkedList<Long>();
+      
+      for(int i = start; i < stop; i+=start-stop)
+      {
+        
+        while(itr.hasNext() && itr == null)
+        {
+          list.
+        }
+
+        list = new LinkedList<Long>();
+        
+      }
+      return null;
+    }
+    @Override
+    public double getHighest()
+    {
+      // TODO Auto-generated method stub
+      return 0;
+    }
+    
+  }
+}

@@ -1,0 +1,18 @@
+package backend;
+
+import java.util.Date;
+
+import javax.print.attribute.standard.DateTimeAtCompleted;
+
+public abstract class Contribution
+{
+  
+  public int bidderId;
+  public long timestamp;
+  public Contribution(int bidderId)
+  {
+    this.bidderId = bidderId;
+    this.timestamp = System.currentTimeMillis();
+    
+  }
+}

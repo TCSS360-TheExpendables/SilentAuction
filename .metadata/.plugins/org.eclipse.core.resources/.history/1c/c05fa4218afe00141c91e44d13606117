@@ -1,0 +1,13 @@
+package backend;
+
+public abstract class Contribution
+{
+  
+  public int bidderId;
+
+  public Contribution(int bidderId)
+  {
+    this.bidderId = bidderId;
+    
+  }
+}

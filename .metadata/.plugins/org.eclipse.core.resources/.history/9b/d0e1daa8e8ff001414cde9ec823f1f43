@@ -1,0 +1,16 @@
+package backend;
+
+
+public class BidCount implements Comparable<Item>
+{
+  
+  /* (non-Javadoc)
+   * @see java.lang.Comparable#compareTo(java.lang.Object)
+   */
+  @Override
+  public int compareTo(Item o)
+  {
+    return 0;
+  }
+  
+}

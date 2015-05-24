@@ -1,0 +1,8 @@
+package backend;
+
+import java.util.Comparator;
+
+public interface Condition extends Comparator<Object>
+{
+  
+}

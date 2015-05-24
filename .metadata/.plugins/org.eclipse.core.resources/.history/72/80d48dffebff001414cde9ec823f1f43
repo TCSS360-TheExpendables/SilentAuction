@@ -1,0 +1,52 @@
+package backend;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+public class Auction
+{
+  private Stats stats;
+  public final long AUCTION_START = System.currentTimeMillis();
+  public final long AUCTION_LENGTH = 100000;//some number
+  private Map<Long, Item> items;
+  private Map<Long, User> users;
+  
+
+  
+  private class Stats
+  {
+    private Stats generalStats()
+    {
+      return stats;
+    }
+
+    public List<Item> filterItems(String s, Map<MatchType, Object> types)
+    {
+      Map<Item, Integer> r_items = new HashMap<Item, Integer>();
+      if(types.containsKey(MatchType.BID_COUNT))
+      {
+        Iterator<Item> itr = r_items.keySet().iterator();
+        double[] conditions = (double[]) types.get(MatchType.BID_COUNT);
+        while(itr.hasNext())
+        {
+          Item itm = itr.next();
+          double bidCount = itm.statistics.getNumBids();
+          if(bidCount < conditions[0] && bidCount < conditions[1])
+          {
+            
+          }
+        }
+     
+      }
+      return r_items;
+    }
+    public Stats()
+    {
+      
+    }
+  }
+}

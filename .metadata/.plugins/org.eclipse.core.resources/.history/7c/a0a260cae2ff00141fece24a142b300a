@@ -1,0 +1,39 @@
+package backend;
+
+import java.util.Map;
+
+public class Auction
+{
+  private Stats stats;
+  public final long AUCTION_START = System.currentTimeMillis();
+  public final long AUCTION_LENGTH = 100000;//some number
+  private Map<Long, Item> items;
+  private Map<Long, User> users;
+  
+
+  public enum MatchType
+  {
+    BID_COUNT,
+    NAME,
+    DESCRIPTION,
+    DONOR,
+    APPRAISAL
+  }
+  
+  private class Stats
+  {
+    private Stats generalStats()
+    {
+      return stats;
+    }
+
+    public Stats filterItems(String s)
+    {
+      return stats;
+    }
+    public Stats()
+    {
+      
+    }
+  }
+}

@@ -1,0 +1,17 @@
+package backend;
+
+
+public class BidCount implements Comparable<Item>
+{
+  private boolean lessThan;
+  private boolean greaterThan;
+  @Override
+  public int compareTo(Item o)
+  {
+    int count = o.statistics.getBidCount();
+    int l = lessThan - count;
+    int r = count - greaterThan;
+    return count > lessThan && count < greaterThan ? ;
+  }
+  
+}

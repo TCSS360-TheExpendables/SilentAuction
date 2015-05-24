@@ -1,0 +1,8 @@
+package backend;
+
+public abstract class Contribution
+{
+  
+  public int bidderId;
+  
+}

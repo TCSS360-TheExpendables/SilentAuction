@@ -1,0 +1,56 @@
+package backend;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+public class Auction
+{
+  private Stats stats;
+  public final long AUCTION_START = System.currentTimeMillis();
+  public final long AUCTION_LENGTH = 100000;//some number
+  private Map<Long, Item> items;
+  private Map<Long, User> users;
+  
+
+  public enum MatchType
+  {
+    BID_COUNT,
+    NAME,
+    DESCRIPTION,
+    DONOR,
+    APPRAISAL
+  }
+  
+  private class Stats
+  {
+    private Stats generalStats()
+    {
+      return stats;
+    }
+
+    public List<Item> filterItems(String s, MatchType... types)
+    {
+      List<Item> r_items = new LinkedList<Item>(items.values());
+      for(MatchType type : types)
+      {
+        Iterator<Item> itr = r_items.iterator();
+        while(itr.hasNext())
+        {
+          if()
+        }
+        for(Long id : items.keySet())
+        {
+          
+        }
+      }
+      return r_items;
+    }
+    public Stats()
+    {
+      
+    }
+  }
+}

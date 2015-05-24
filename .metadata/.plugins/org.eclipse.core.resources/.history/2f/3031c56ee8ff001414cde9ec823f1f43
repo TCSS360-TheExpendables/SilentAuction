@@ -1,0 +1,8 @@
+package backend;
+
+import java.util.Comparator;
+
+public abstract class Condition implements Comparator<Object>
+{
+  
+}

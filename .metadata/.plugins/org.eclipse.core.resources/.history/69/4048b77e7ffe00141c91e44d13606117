@@ -1,0 +1,6 @@
+package silentbutdeadly;
+
+public interface Contribution
+{
+  
+}
