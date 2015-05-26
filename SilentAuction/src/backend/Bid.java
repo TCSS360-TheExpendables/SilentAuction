@@ -1,14 +1,17 @@
 package backend;
 
-public class Bid implements Contribution
+public class Bid extends Contribution
 {
   private final double amount;
-  private final int bidderId;
+  
   public Bid(double amount, int bidderId)
   {
+    super(bidderId);
     this.amount = amount;
-    this.bidderId = bidderId;
   }
   
-
+  public double getAmount()
+  {
+    return this.amount;
+  }
 }
