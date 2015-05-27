@@ -352,7 +352,8 @@ public class Page extends JFrame
 	private void basicSetup()
 	{
 		setTitle("Silent Auction");
-		setBounds(100, 100, 700, 500);
+		this.
+//		setBounds(100, 100, 700, 500);
 		setLocation((int)(screenwidth - getWidth()) / 2, (int)(screenheight - getHeight()) / 2);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ImageIcon img = new ImageIcon("assets/logo.png");
