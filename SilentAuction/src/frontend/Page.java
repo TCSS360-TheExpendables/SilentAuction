@@ -34,6 +34,7 @@ import javax.swing.JList;
 import javax.swing.JPasswordField;
 
 import backend.Auction;
+
 import javax.swing.AbstractListModel;
 
 /**
@@ -94,6 +95,7 @@ public class Page extends JFrame
 	 * Create the frame. This creates the entire JFrame in addition to the menu and all of the
 	 * individual pages and puts them all together so a user can switch between different pages.
 	 */
+	@SuppressWarnings("unchecked")
 	public Page()
 	{
 		basicSetup();
@@ -220,18 +222,22 @@ public class Page extends JFrame
 		
 //		List<Item> items = Auction.
 		String[] items = new String[20]; //20 is the number of items
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 10; i++)
+		{
 			items[i] = i + ": hello" + i;
 			itemField.setText(items[i]);
-			list.setModel(new AbstractListModel() {
-			String[] values = items;
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
+			list.setModel(new AbstractListModel()
+			{
+				String[] values = items;
+				public int getSize()
+				{
+					return values.length;
+				}
+				public Object getElementAt(int index)
+				{
+					return values[index];
+				}
+			});
 		}
 		
 		//registration panel
