@@ -222,7 +222,7 @@ public class Page extends JFrame
 		
 //		List<Item> items = Auction.
 		String[] items = new String[20]; //20 is the number of items
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 20; i++)
 		{
 			items[i] = i + ": hello" + i;
 			itemField.setText(items[i]);
