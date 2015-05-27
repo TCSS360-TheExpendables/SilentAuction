@@ -25,6 +25,7 @@ import javax.swing.JLabel;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.util.ArrayList;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -33,6 +34,7 @@ import javax.swing.JList;
 import javax.swing.JPasswordField;
 
 import backend.Auction;
+import javax.swing.AbstractListModel;
 
 /**
  * This class is the main frame for our silent auction software for TCSS 360.
@@ -212,10 +214,25 @@ public class Page extends JFrame
 		JLabel lblItemsToBid = new JLabel("Items to Bid On");
 		scrollPane.setColumnHeaderView(lblItemsToBid);
 		
-		JList list = new JList();
+		JList<String> list = new JList<String>();
+		JTextField itemField = new JTextField();
 		scrollPane.setViewportView(list);
 		
 //		List<Item> items = Auction.
+		String[] items = new String[20]; //20 is the number of items
+		for (int i = 0; i < 10; i++) {
+			items[i] = i + ": hello" + i;
+			itemField.setText(items[i]);
+			list.setModel(new AbstractListModel() {
+			String[] values = items;
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		}
 		
 		//registration panel
 		JPanel registrationPanel = new Registration();
@@ -352,8 +369,7 @@ public class Page extends JFrame
 	private void basicSetup()
 	{
 		setTitle("Silent Auction");
-		this.
-//		setBounds(100, 100, 700, 500);
+		setBounds(100, 100, 700, 500);
 		setLocation((int)(screenwidth - getWidth()) / 2, (int)(screenheight - getHeight()) / 2);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ImageIcon img = new ImageIcon("assets/logo.png");
