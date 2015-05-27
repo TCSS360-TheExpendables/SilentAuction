@@ -10,9 +10,16 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+
+import backend.Item;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * This class creates the home 'page' which will hold all of the items that are able to be bid on.
@@ -34,6 +41,7 @@ public class Home extends JPanel
 	/**
 	 * Creates the home page.
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked", "serial" })
 	public Home()
 	{
 		
@@ -67,6 +75,11 @@ public class Home extends JPanel
 		gbc_homeFilterCombo.fill = GridBagConstraints.HORIZONTAL;
 		gbc_homeFilterCombo.gridx = 1;
 		gbc_homeFilterCombo.gridy = 0;
+		homeFilterCombo.addItem("Name");
+		homeFilterCombo.addItem("Current Bid");
+		homeFilterCombo.addItem("Bid Count");
+		homeFilterCombo.addItem("Description");
+		homeFilterCombo.addItem("Appraisal");
 		innerHomePanel.add(homeFilterCombo, gbc_homeFilterCombo);
 		
 		//a space
@@ -97,6 +110,7 @@ public class Home extends JPanel
 		
 		//filter button
 		JButton homeFilterButton = new JButton("Filter");
+
 		GridBagConstraints gbc_homeFilterButton = new GridBagConstraints();
 		gbc_homeFilterButton.insets = new Insets(0, 0, 5, 0);
 		gbc_homeFilterButton.anchor = GridBagConstraints.EAST;
@@ -132,12 +146,42 @@ public class Home extends JPanel
 		homeScrolPane.setColumnHeaderView(homeItemstoBidLabel);
 		
 		//items list
-		JList<String> homeItemsList = new JList<String>();
 		JTextField itemField = new JTextField();
+		JList<String> homeItemsList = new JList<String>();
+		String[] items = new String[20]; //20 is the number of items
+		for (int i = 0; i < 20; i++)
+		{
+			items[i] = i + ": hello" + i;//"index: item_name highest_price"
+			itemField.setText(items[i]);
+		}
+		/**
+		 * ArrayList<Items> items = Auction.getlistofitems or whatever
+		 * String[] StringOfItems = new String[items.length]
+		 * for (int i = 0; i < items.length; i++) {
+		 * 		StringOfItems[i] = i + ": " + items.getIndex(i).getName + " " + items.getIndex(i).gethighprice;
+		 * 		itemField.setText(items[i])
+		 * }
+		 * JList<String> homeItemsList = new JList<String>(StringofItems);
+		 */
+		homeItemsList.setModel(new AbstractListModel()
+		{
+			String[] values = items;
+			public int getSize()
+			{
+				return values.length;
+			}
+			public Object getElementAt(int index)
+			{
+				return values[index];
+			}
+		});
+		
+		homeItemsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);	//allows only a single item to be selected
 		homeScrolPane.setViewportView(homeItemsList);
 		
 		//bid button
 		JButton homeBidButton = new JButton("Bid on Selected Item");
+
 		GridBagConstraints gbc_homeBidButton = new GridBagConstraints();
 		gbc_homeBidButton.anchor = GridBagConstraints.EAST;
 		gbc_homeBidButton.gridx = 1;
@@ -145,24 +189,29 @@ public class Home extends JPanel
 		innerHomePanel.add(homeBidButton, gbc_homeBidButton);
 	/** End fields */
 		
-//		List<Item> items = Auction.
-		String[] items = new String[20]; //20 is the number of items
-		for (int i = 0; i < 20; i++)
-		{
-			items[i] = i + ": hello" + i;//"index: item_name highest_price"
-			itemField.setText(items[i]);
-			homeItemsList.setModel(new AbstractListModel()
-			{
-				String[] values = items;
-				public int getSize()
-				{
-					return values.length;
-				}
-				public Object getElementAt(int index)
-				{
-					return values[index];
-				}
-			});
-		}
+	/** Start listeners */
+		//the home filter button
+		homeFilterButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String filterBy = (String) homeFilterCombo.getSelectedItem();
+				String title = homeFilterText.getText();
+				
+				//TODO: use filterby and title to call filterItems in auction, to change the jlist.
+			}
+		});
+		
+		//the home bid button listener
+		homeBidButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int index = homeItemsList.getSelectedIndex();
+				
+				//create new item panel
+//				Page.itemPanel = new ItemPage(item);
+				Page.homePanel.setVisible(false);
+//				homeItemsList.
+				Page.itemPanel.setVisible(true);
+//				contentPane.add(itemPanel);
+			}
+		});
 	}
 }

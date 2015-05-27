@@ -16,6 +16,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JMenuItem;
 
+import backend.Item;
+
 /**
  * This class is the main frame for our silent auction software for TCSS 360.
  * 
@@ -23,6 +25,9 @@ import javax.swing.JMenuItem;
  * @version 0.0.0.1
  * @since 20.05.2015
  */
+
+
+
 public class Page extends JFrame
 {
 
@@ -40,7 +45,17 @@ public class Page extends JFrame
 	//Width and Height of the screen to keep it centered.
 	private static double screenwidth = dm.getWidth();
 	private static double screenheight = dm.getHeight();
-
+	
+	public static JPanel itemPanel;	
+	public static JPanel homePanel;
+	public static JPanel registrationPanel;
+	public static JPanel donatePanel;
+	public static JPanel generalStatsPanel;
+	public static JPanel QRPanel;
+	public static JPanel specificStatsPanel;
+	
+	
+	
 //Main
 	
 	/**
@@ -110,31 +125,33 @@ public class Page extends JFrame
 		
 	/** Start 'pages' */
 		//home panel
-		JPanel homePanel = new Home();
+		homePanel = new Home();
 		contentPane.add(homePanel);
 		
 		//registration panel
-		JPanel registrationPanel = new Registration();
+		registrationPanel = new Registration();
 		contentPane.add(registrationPanel);
 		
 		//donate panel
-		JPanel donatePanel = new Donor();
+		donatePanel = new Donor();
 		contentPane.add(donatePanel);
 		
 		//general stats panel
-		JPanel generalStatsPanel = new GeneralStats();
+		generalStatsPanel = new GeneralStats();
 		contentPane.add(generalStatsPanel);
 		
 		//QR panel
-		JPanel QRPanel = new JPanel();
+		QRPanel = new JPanel();
 		contentPane.add(QRPanel);
 		
 		//specific stats panel
-		JPanel specificStatsPanel = new SpecificStats();
+		specificStatsPanel = new SpecificStats();
 		contentPane.add(specificStatsPanel);
 		
 		//item panel
-		JPanel itemPanel = new Item();
+		Item item = new Item("Connor", "is awesome", 200.00, null);
+		itemPanel = new ItemPage(item);
+//		itemPanel = new ItemPage();
 		contentPane.add(itemPanel);
 	/** End 'pages' */
 		

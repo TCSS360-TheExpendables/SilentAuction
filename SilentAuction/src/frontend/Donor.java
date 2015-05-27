@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 /**
  * This class creates the donor 'page' which holds the fields for a person to become a donor.
@@ -66,6 +68,7 @@ public class Donor extends JPanel
 		
 		//name text box
 		donateNameField = new JTextField();
+
 		donateNameField.setColumns(10);
 		GridBagConstraints gbc_donateNameField = new GridBagConstraints();
 		gbc_donateNameField.fill = GridBagConstraints.HORIZONTAL;
@@ -219,21 +222,122 @@ public class Donor extends JPanel
 		
 		//the donate button
 		JButton donateButton = new JButton("Donate");
-		donateButton.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent arg0)
-			{
-				JOptionPane.showMessageDialog(null, "wow again? what is wrong with you?");
-				//TODO: create a new donor with the information
-				//make sure to do error checking.
-			}
-		});
-	/** End fields */
-		
 		GridBagConstraints gbc_donateButton = new GridBagConstraints();
 		gbc_donateButton.anchor = GridBagConstraints.EAST;
 		gbc_donateButton.gridx = 5;
 		gbc_donateButton.gridy = 12;
+		donateButton.setEnabled(false);
 		innerDonPanel.add(donateButton, gbc_donateButton);
-	}
+	/** End fields */
+		
+	/** Start listeners */
+		//donate button
+		donateButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				
+				
+				String name = donateNameField.getText();
+				String email = donateEmailField.getText();
+				String phoneNumber = donatePhoneField.getText();
+				String companyName = donateCompanyField.getText();
+				String itemName = donateItemField.getText();
+				double bid;
+				if (phoneNumber.length() != 10 || !phoneNumber.matches("[0-9]+")) {
+					JOptionPane.showMessageDialog(null, "Please enter a valid phone number");
+				}
+				else {
+					if (!donateBidField.getText().matches("[0-9]+")) {
+						JOptionPane.showMessageDialog(null, "Please enter a valid price for your bid.");
+					}
+					else {
+						bid = Double.parseDouble(donateBidField.getText());
+						//TODO: create a new donor with the information
+						//make sure to do error checking.
+						JOptionPane.showMessageDialog(null, "Thank you for donating your item: " + itemName);
+					}
+				}
+			}
+		});
+		
+		donateNameField.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+		           if(donateNameField.getText().length() == 0 || donateEmailField.getText().length() == 0 
+		        		   || donatePhoneField.getText().length() == 0 || donateCompanyField.getText().length() == 0 
+		        		   || donateItemField.getText().length() == 0 || donateBidField.getText().length() == 0)
+		                donateButton.setEnabled(false);
+		            else
+		            {
+		                donateButton.setEnabled(true);
+		            }
+			}
+		});
+		
+		donateEmailField.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+		           if(donateNameField.getText().length() == 0 || donateEmailField.getText().length() == 0 
+		        		   || donatePhoneField.getText().length() == 0 || donateCompanyField.getText().length() == 0 
+		        		   || donateItemField.getText().length() == 0 || donateBidField.getText().length() == 0)
+		                donateButton.setEnabled(false);
+		            else
+		            {
+		                donateButton.setEnabled(true);
+		            }
+			}
+		});
+		
+		donatePhoneField.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+		           if(donateNameField.getText().length() == 0 || donateEmailField.getText().length() == 0 
+		        		   || donatePhoneField.getText().length() == 0 || donateCompanyField.getText().length() == 0 
+		        		   || donateItemField.getText().length() == 0 || donateBidField.getText().length() == 0)
+		                donateButton.setEnabled(false);
+		            else
+		            {
+		                donateButton.setEnabled(true);
+		            }
+			}
+		});
+		
+		donateCompanyField.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+		           if(donateNameField.getText().length() == 0 || donateEmailField.getText().length() == 0 
+		        		   || donatePhoneField.getText().length() == 0 || donateCompanyField.getText().length() == 0 
+		        		   || donateItemField.getText().length() == 0 || donateBidField.getText().length() == 0)
+		                donateButton.setEnabled(false);
+		            else
+		            {
+		                donateButton.setEnabled(true);
+		            }
+			}
+		});
+		
+		donateItemField.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+		           if(donateNameField.getText().length() == 0 || donateEmailField.getText().length() == 0 
+		        		   || donatePhoneField.getText().length() == 0 || donateCompanyField.getText().length() == 0 
+		        		   || donateItemField.getText().length() == 0 || donateBidField.getText().length() == 0)
+		                donateButton.setEnabled(false);
+		            else
+		            {
+		                donateButton.setEnabled(true);
+		            }
+			}
+		});
+		
+		donateBidField.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+		           if(donateNameField.getText().length() == 0 || donateEmailField.getText().length() == 0 
+		        		   || donatePhoneField.getText().length() == 0 || donateCompanyField.getText().length() == 0 
+		        		   || donateItemField.getText().length() == 0 || donateBidField.getText().length() == 0)
+		                donateButton.setEnabled(false);
+		            else
+		            {
+		                donateButton.setEnabled(true);
+		            }
+			}
+		});
+	}	
+
 }

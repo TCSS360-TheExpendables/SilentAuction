@@ -13,6 +13,8 @@ import javax.swing.JTextField;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 /**
  * This class creates the registration 'page' so that users can register to be a new user.
@@ -64,6 +66,7 @@ public class Registration extends JPanel
 		
 		//name text box
 		nameField = new JTextField();
+
 		GridBagConstraints gbc_nameField = new GridBagConstraints();
 		gbc_nameField.insets = new Insets(0, 0, 5, 0);
 		gbc_nameField.fill = GridBagConstraints.HORIZONTAL;
@@ -136,14 +139,8 @@ public class Registration extends JPanel
 				
 		//the register button
 		JButton btnRegister = new JButton("Register");
-		btnRegister.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				JOptionPane.showMessageDialog(null, "wow you fell for that?");
-				//TODO Create a new user with ID
-			}
-		});
+		btnRegister.setEnabled(false);
+
 	/** End fields */
 		
 		GridBagConstraints gbc_btnRegister = new GridBagConstraints();
@@ -152,5 +149,65 @@ public class Registration extends JPanel
 		gbc_btnRegister.gridx = 5;
 		gbc_btnRegister.gridy = 6;
 		innerRegPanel.add(btnRegister, gbc_btnRegister);
+		
+	/** Start listeners */
+		//register button
+		btnRegister.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				//TODO Create a new user with ID
+				
+				String name = nameField.getText();
+				String email = emailField.getText();
+				String phoneNumber = phoneField.getText();
+				if (phoneNumber.length() != 10 || !phoneNumber.matches("[0-9]+")) {
+					JOptionPane.showMessageDialog(null, "Please enter a valid phone number");
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Thank you for registering, " + name);
+					Page.registrationPanel.setVisible(false);
+					Page.homePanel.setVisible(true);
+				}
+					
+				
+			}
+		});
+		
+		nameField.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+		           if(emailField.getText().length() == 0 || phoneField.getText().length() == 0 
+		        		   || nameField.getText().length() == 0)
+		                btnRegister.setEnabled(false);
+		            else
+		            {
+		                btnRegister.setEnabled(true);
+		            }
+			}
+		});
+		
+		emailField.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+		           if(emailField.getText().length() == 0 || phoneField.getText().length() == 0 
+		        		   || nameField.getText().length() == 0)
+		                btnRegister.setEnabled(false);
+		            else
+		            {
+		                btnRegister.setEnabled(true);
+		            }
+			}
+		});
+		
+		phoneField.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+		           if(emailField.getText().length() == 0 || phoneField.getText().length() == 0 
+		        		   || nameField.getText().length() == 0)
+		                btnRegister.setEnabled(false);
+		            else
+		            {
+		                btnRegister.setEnabled(true);
+		            }
+			}
+		});
 	}
 }
