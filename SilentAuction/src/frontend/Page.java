@@ -1,7 +1,6 @@
 package frontend;
 
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
@@ -16,23 +15,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JMenuItem;
-import javax.swing.JComboBox;
 
-import java.awt.BorderLayout;
-import java.awt.GridBagLayout;
-
-import javax.swing.JLabel;
-
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import javax.swing.JList;
-import javax.swing.JPasswordField;
-
-import backend.Auction;
+import backend.Item;
 
 /**
  * This class is the main frame for our silent auction software for TCSS 360.
@@ -41,6 +25,9 @@ import backend.Auction;
  * @version 0.0.0.1
  * @since 20.05.2015
  */
+
+
+
 public class Page extends JFrame
 {
 
@@ -58,8 +45,17 @@ public class Page extends JFrame
 	//Width and Height of the screen to keep it centered.
 	private static double screenwidth = dm.getWidth();
 	private static double screenheight = dm.getHeight();
-	private JTextField textField;
-
+	
+	public static JPanel itemPanel;	
+	public static JPanel homePanel;
+	public static JPanel registrationPanel;
+	public static JPanel donatePanel;
+	public static JPanel generalStatsPanel;
+	public static JPanel QRPanel;
+	public static JPanel specificStatsPanel;
+	
+	
+	
 //Main
 	
 	/**
@@ -129,120 +125,33 @@ public class Page extends JFrame
 		
 	/** Start 'pages' */
 		//home panel
-		JPanel homePanel = new JPanel();
-		homePanel.setBackground(Color.BLUE);
+		homePanel = new Home();
 		contentPane.add(homePanel);
-		homePanel.setLayout(new BorderLayout(0, 0));
-		
-		JPanel innerHomePanel = new JPanel();
-		homePanel.add(innerHomePanel, BorderLayout.CENTER);
-		GridBagLayout gbl_innerHomePanel = new GridBagLayout();
-		gbl_innerHomePanel.columnWidths = new int[]{0, 0, 0};
-		gbl_innerHomePanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_innerHomePanel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_innerHomePanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		innerHomePanel.setLayout(gbl_innerHomePanel);
-		
-		JLabel lblFilter = new JLabel("Filter:");
-		GridBagConstraints gbc_lblFilter = new GridBagConstraints();
-		gbc_lblFilter.insets = new Insets(0, 0, 5, 5);
-		gbc_lblFilter.anchor = GridBagConstraints.EAST;
-		gbc_lblFilter.gridx = 0;
-		gbc_lblFilter.gridy = 0;
-		innerHomePanel.add(lblFilter, gbc_lblFilter);
-		
-		JComboBox comboBox = new JComboBox();
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.insets = new Insets(0, 0, 5, 0);
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.gridx = 1;
-		gbc_comboBox.gridy = 0;
-		innerHomePanel.add(comboBox, gbc_comboBox);
-		
-		JLabel space1 = new JLabel(" ");
-		GridBagConstraints gbc_space1 = new GridBagConstraints();
-		gbc_space1.insets = new Insets(0, 0, 5, 0);
-		gbc_space1.gridx = 1;
-		gbc_space1.gridy = 1;
-		innerHomePanel.add(space1, gbc_space1);
-		
-		textField = new JTextField();
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 0);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 1;
-		gbc_textField.gridy = 2;
-		innerHomePanel.add(textField, gbc_textField);
-		textField.setColumns(10);
-		
-		JLabel space2 = new JLabel(" ");
-		GridBagConstraints gbc_space2 = new GridBagConstraints();
-		gbc_space2.insets = new Insets(0, 0, 5, 0);
-		gbc_space2.gridx = 1;
-		gbc_space2.gridy = 3;
-		innerHomePanel.add(space2, gbc_space2);
-		
-		JButton btnNewButton = new JButton("Filter");
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton.anchor = GridBagConstraints.EAST;
-		gbc_btnNewButton.gridx = 1;
-		gbc_btnNewButton.gridy = 4;
-		innerHomePanel.add(btnNewButton, gbc_btnNewButton);
-		
-		JLabel label = new JLabel(" ");
-		GridBagConstraints gbc_label = new GridBagConstraints();
-		gbc_label.insets = new Insets(0, 0, 5, 0);
-		gbc_label.gridx = 1;
-		gbc_label.gridy = 5;
-		innerHomePanel.add(label, gbc_label);
-		
-		JPanel panel = new JPanel();
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.gridwidth = 2;
-		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.gridx = 0;
-		gbc_panel.gridy = 6;
-		innerHomePanel.add(panel, gbc_panel);
-		panel.setLayout(new BorderLayout(0, 0));
-		
-		JScrollPane scrollPane = new JScrollPane();
-		panel.add(scrollPane, BorderLayout.CENTER);
-		
-		JLabel lblItemsToBid = new JLabel("Items to Bid On");
-		scrollPane.setColumnHeaderView(lblItemsToBid);
-		
-		JList list = new JList();
-		scrollPane.setViewportView(list);
-		
-//		List<Item> items = Auction.
 		
 		//registration panel
-		JPanel registrationPanel = new Registration();
+		registrationPanel = new Registration();
 		contentPane.add(registrationPanel);
 		
 		//donate panel
-		JPanel donatePanel = new Donor();
+		donatePanel = new Donor();
 		contentPane.add(donatePanel);
 		
 		//general stats panel
-		JPanel generalStatsPanel = new JPanel();
-		generalStatsPanel.setBackground(Color.ORANGE);
+		generalStatsPanel = new GeneralStats();
 		contentPane.add(generalStatsPanel);
 		
 		//QR panel
-		JPanel QRPanel = new JPanel();
-		QRPanel.setBackground(Color.GRAY);
+		QRPanel = new JPanel();
 		contentPane.add(QRPanel);
 		
 		//specific stats panel
-		JPanel specificStatsPanel = new JPanel();
-		specificStatsPanel.setBackground(Color.MAGENTA);
+		specificStatsPanel = new SpecificStats();
 		contentPane.add(specificStatsPanel);
 		
 		//item panel
-		JPanel itemPanel = new JPanel();
-		itemPanel.setBackground(Color.PINK);
+		Item item = new Item("Connor", "is awesome", 200.00, null);
+		itemPanel = new ItemPage(item);
+//		itemPanel = new ItemPage();
 		contentPane.add(itemPanel);
 	/** End 'pages' */
 		
@@ -352,13 +261,10 @@ public class Page extends JFrame
 	private void basicSetup()
 	{
 		setTitle("Silent Auction");
-		this.
-//		setBounds(100, 100, 700, 500);
+		setBounds(100, 100, 700, 500);
 		setLocation((int)(screenwidth - getWidth()) / 2, (int)(screenheight - getHeight()) / 2);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ImageIcon img = new ImageIcon("assets/logo.png");
 		setIconImage(img.getImage());
-	}
-	
+	}	
 }
-
