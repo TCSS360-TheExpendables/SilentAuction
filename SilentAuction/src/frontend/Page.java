@@ -149,7 +149,7 @@ public class Page extends JFrame
 		contentPane.add(specificStatsPanel);
 		
 		//item panel
-		Item item = new Item("Connor", "is awesome", 200.00, null);
+		Item item = new Item("Conner", "is awesome", 200.00, null);
 		itemPanel = new ItemPage(item);
 //		itemPanel = new ItemPage();
 		contentPane.add(itemPanel);
