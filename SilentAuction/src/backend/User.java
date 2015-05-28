@@ -6,7 +6,7 @@ abstract class User implements EventListener
 {
   protected final String name;
   protected final int ID;
-  protected final String emailTest;
+  protected final String email;
   protected final String phone;
 
   
