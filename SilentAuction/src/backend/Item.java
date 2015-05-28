@@ -101,11 +101,6 @@ public class Item
     }
     
     
-    public Bid getHighestBidAmt()
-    {
-      return bids.getLast();
-    }
-    
     public int getHighestBidder()
     {
       return bids.getLast().hashCode();

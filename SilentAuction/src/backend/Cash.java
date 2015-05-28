@@ -1,9 +1,10 @@
 package backend;
 
-public class Cash implements Contribution
+public class Cash extends Contribution
 {
   private final double value;
-  public Cash(final double value)
+  
+  public Cash (final double value)
   {
     this.value = value;
   }
