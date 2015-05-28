@@ -13,9 +13,16 @@ public class User implements EventListener
   public User(final String name)
   {
     this.name = name;
+<<<<<<< HEAD
     this.bids = new LinkedList<Bid>();
     this.donations = new LinkedList<Contribution>();
     
+=======
+    this.ID = hashCode();
+    this.email = email;
+    this.phone = phone;
+    //comment
+>>>>>>> origin/master
   }
   @Override
   public int hashCode()
