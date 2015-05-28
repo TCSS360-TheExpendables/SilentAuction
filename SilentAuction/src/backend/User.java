@@ -1,21 +1,20 @@
 package backend;
 
 import java.util.EventListener;
+import java.util.LinkedList;
+import java.util.List;
 
-abstract class User implements EventListener
+public class User implements EventListener
 {
-  protected final String name;
-  protected final int ID;
-  protected final String email;
-  protected final String phone;
-
+  public final String name;
+  private final List<Bid> bids;
+  private final List<Contribution> donations;
   
-  public User(final String name, final String email, final String phone)
+  public User(final String name)
   {
     this.name = name;
-    this.ID = hashCode();
-    this.email = email;
-    this.phone = phone;
+    this.bids = new LinkedList<Bid>();
+    this.donations = new LinkedList<Contribution>();
     
   }
   @Override
@@ -23,6 +22,21 @@ abstract class User implements EventListener
   {
     return this.name.hashCode();
   }
- 
+  
+  public void placeBid(final Item item, final double amount)
+  {
+    Bid bid = new Bid(amount, this.name.hashCode());
+    item.addBid(bid);
+    this.bids.add(bid);
+  }
+  
+  public void donate(final double cash)
+  {
+    this.donate(new Cash(cash));
+  }
+  public void donate(final Contribution contribution)
+  {
+    this.donations.add(contribution);
+  }
   
 }
