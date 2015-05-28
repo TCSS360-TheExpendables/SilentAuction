@@ -440,13 +440,15 @@ public class ItemPage extends JPanel
 		gbc_itemNewBidButton.gridy = 12;
 		itemNewBidButton.setEnabled(false);
 		innerItemPanel.add(itemNewBidButton, gbc_itemNewBidButton);
+	/** End fields */
 		
 	/** Start listeners */
 		//Item back button goes to home
-		itemBackButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				itemNewBidField.setText(null);
-				itemBidderIDText.setText(null);
+		itemBackButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				resetPanel();
 				
 				Page.itemPanel.setVisible(false);
 				Page.homePanel.setVisible(true);
@@ -454,13 +456,17 @@ public class ItemPage extends JPanel
 		});
 		
 		//Item new bid button
-		itemNewBidButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (!itemNewBidField.getText().matches("[0-9]+")) {
+		itemNewBidButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				if (!itemNewBidField.getText().matches("[0-9]+"))
+				{
 					JOptionPane.showMessageDialog(null, "Please enter a valid bid.");
 				}
 				else {
-					if (!itemBidderIDText.getText().matches("[0-9]+")) {
+					if (!itemBidderIDText.getText().matches("[0-9]+"))
+					{
 						JOptionPane.showMessageDialog(null, "Please enter a valid ID number. "
 								+ "If you do not have one, you can register by going to the register menu item");
 					}
@@ -471,9 +477,8 @@ public class ItemPage extends JPanel
 						currentItem.addBid(bid);
 
 						JOptionPane.showMessageDialog(null, "Thank you for placing your bid value of: $" + bidAmount);
-						itemNewBidField.setText(null);
-						itemBidderIDText.setText(null);
 						itemNewBidButton.setEnabled(false);
+						resetPanel();
 						Page.itemPanel.setVisible(false);
 						Page.homePanel.setVisible(true);
 					}
@@ -481,8 +486,10 @@ public class ItemPage extends JPanel
 			}
 		});
 		
-		itemBidderIDText.addKeyListener(new KeyAdapter() {
-			public void keyReleased(KeyEvent e) {
+		itemBidderIDText.addKeyListener(new KeyAdapter()
+		{
+			public void keyReleased(KeyEvent e)
+			{
 		           if(itemNewBidField.getText().length() == 0 || itemBidderIDText.getText().length() == 0)
 		                itemNewBidButton.setEnabled(false);
 		            else
@@ -492,8 +499,10 @@ public class ItemPage extends JPanel
 			}
 		});
 		
-		itemNewBidField.addKeyListener(new KeyAdapter() {
-			public void keyReleased(KeyEvent e) {
+		itemNewBidField.addKeyListener(new KeyAdapter()
+		{
+			public void keyReleased(KeyEvent e) 
+			{
 		           if(itemNewBidField.getText().length() == 0 || itemBidderIDText.getText().length() == 0)
 		                itemNewBidButton.setEnabled(false);
 		            else
@@ -501,9 +510,16 @@ public class ItemPage extends JPanel
 		                itemNewBidButton.setEnabled(true);
 		            }
 			}
-		});
-		
-		
-	/** End fields */
+		});	
+	/** End listeners */
+	}
+	
+	void resetPanel()
+	{
+		ItemNameField.setText(null);
+		ItemCurrentBidText.setText(null);
+		itemDescriptionText.setText(null);
+		itemNewBidField.setText(null);
+		itemBidderIDText.setText(null);
 	}
 }

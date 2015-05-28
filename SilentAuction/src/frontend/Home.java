@@ -17,9 +17,11 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 import backend.Item;
+import backend.User;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 /**
  * This class creates the home 'page' which will hold all of the items that are able to be bid on.
@@ -145,27 +147,38 @@ public class Home extends JPanel
 		JLabel homeItemstoBidLabel = new JLabel("Items to Bid On");
 		homeScrolPane.setColumnHeaderView(homeItemstoBidLabel);
 		
+		/****************************************************************************************************************************/
+		
+		ArrayList<Item> items = new ArrayList<Item>();
+		items.add(new Item("Tabel", "a nice kitchen tabel", 50.00, null));
+		items.add(new Item("Chair", "a nice kitchen chair", 30.00, null));
+		items.add(new Item("Whale Watching Experience", "a wonderful trip to the beautiful islands of washington", 250.00, new User("Whale Watchers INC")));
+		items.add(new Item("Dildo", "a 4 foot rubber and lubricated dildo", 100.00, null));
+		items.add(new Item("Computer mouse", "", 20.00, null));
+		
+		/****************************************************************************************************************************/
+		
 		//items list
 		JTextField itemField = new JTextField();
-		JList<String> homeItemsList = new JList<String>();
-		String[] items = new String[20]; //20 is the number of items
-		for (int i = 0; i < 20; i++)
-		{
-			items[i] = i + ": hello" + i;//"index: item_name highest_price"
-			itemField.setText(items[i]);
+//		JList<String> homeItemsList = new JList<String>();
+//		String[] items = new String[20]; //20 is the number of items
+//		for (int i = 0; i < 20; i++)
+//		{
+//			items[i] = i + ": hello" + i;//"index: item_name highest_price"
+//			itemField.setText(items[i]);
+//		}
+		
+//		ArrayList<Items> items = Auction.getlistofitems or whatever
+		String[] StringOfItems = new String[items.size()];
+		for (int i = 0; i < items.size(); i++) {
+//			StringOfItems[i] = i + ": " + items.get(i).getName() + " " + items.get(i).statistics.getHighestBidAmt();
+			itemField.setText(StringOfItems[i]);
 		}
-		/**
-		 * ArrayList<Items> items = Auction.getlistofitems or whatever
-		 * String[] StringOfItems = new String[items.length]
-		 * for (int i = 0; i < items.length; i++) {
-		 * 		StringOfItems[i] = i + ": " + items.getIndex(i).getName + " " + items.getIndex(i).gethighprice;
-		 * 		itemField.setText(items[i])
-		 * }
-		 * JList<String> homeItemsList = new JList<String>(StringofItems);
-		 */
+		JList<String> homeItemsList = new JList<String>(StringOfItems);
+
 		homeItemsList.setModel(new AbstractListModel()
 		{
-			String[] values = items;
+			String[] values = StringOfItems;
 			public int getSize()
 			{
 				return values.length;
@@ -204,9 +217,10 @@ public class Home extends JPanel
 		homeBidButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int index = homeItemsList.getSelectedIndex();
-				
+				Item item = new Item("Hannah", "is lame", 300.00, null);
 				//create new item panel
 //				Page.itemPanel = new ItemPage(item);
+				
 				Page.homePanel.setVisible(false);
 //				homeItemsList.
 				Page.itemPanel.setVisible(true);
